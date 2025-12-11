@@ -1,16 +1,47 @@
 import { Story, NodeId, KnotId } from './types';
 
+/**
+ * Represents an issue found during story analysis.
+ */
 export interface AnalysisIssue {
+  /** The type of issue detected */
   code: 'INESCAPABLE_LOOP' | 'DEAD_END' | 'UNREACHABLE';
+  /** Example path showing where the issue occurs */
   pathExample: NodeId[];
-  scc?: NodeId[]; // for loops
+  /** For loop issues, the strongly connected component nodes */
+  scc?: NodeId[];
+  /** Human-readable description of the issue */
   message: string;
 }
 
+/**
+ * Result of analyzing a story for structural issues.
+ */
 export interface AnalysisResult {
+  /** List of issues found in the story */
   issues: AnalysisIssue[];
 }
 
+/**
+ * Analyzes a story definition for common structural issues.
+ *
+ * This function checks for:
+ * - **Unreachable nodes**: Nodes that cannot be reached from the entry point
+ * - **Dead ends**: Nodes with no choices and no ending marker
+ * - **Inescapable loops**: Loops that cannot be exited (no ending, no way out)
+ *
+ * @example
+ * ```typescript
+ * const result = analyzeStory(myStory);
+ * if (result.issues.length > 0) {
+ *   console.warn('Story has issues:', result.issues);
+ * }
+ * ```
+ *
+ * @typeParam TEffect - The type of effects used in the story
+ * @param story - The story definition to analyze
+ * @returns Analysis result containing any issues found
+ */
 export function analyzeStory<TEffect>(story: Story<TEffect>): AnalysisResult {
   const issues: AnalysisIssue[] = [];
 

@@ -1,5 +1,34 @@
 import { Story, StoryRuntime, RuntimeOptions, StepResult, KnotId, NodeId, Choice } from './types';
 
+/**
+ * Creates a new story runtime instance.
+ *
+ * The runtime manages the current position in the story and provides methods
+ * to navigate through nodes, make choices, and track effects.
+ *
+ * @example
+ * ```typescript
+ * const story: Story<{ health: number }> = {
+ *   version: 1,
+ *   entryKnot: 'start',
+ *   knots: { /* ... *\/ }
+ * };
+ *
+ * const runtime = createRuntime(story, {
+ *   conditionHooks: {
+ *     hasKey: (state) => state.hasKey === true
+ *   }
+ * });
+ *
+ * const step = runtime.current({ hasKey: false });
+ * ```
+ *
+ * @typeParam TEffect - The type of effects that can be applied in the story
+ * @typeParam TState - The type of game state used for condition evaluation
+ * @param story - The story definition to run
+ * @param options - Optional runtime configuration for condition evaluation
+ * @returns A runtime instance for navigating the story
+ */
 export function createRuntime<TEffect, TState>(
   story: Story<TEffect>,
   options?: RuntimeOptions<TState>

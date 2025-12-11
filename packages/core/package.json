@@ -48,12 +48,15 @@
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
+    "docs": "typedoc",
+    "docs:build": "typedoc && echo 'Documentation built in docs/'",
     "prepublishOnly": "npm run build && npm test"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
+    "@types/jest": "^29.0.0",
     "jest": "^29.0.0",
     "ts-jest": "^29.0.0",
-    "@types/jest": "^29.0.0"
+    "typedoc": "^0.25.13",
+    "typescript": "^5.0.0"
   }
 }

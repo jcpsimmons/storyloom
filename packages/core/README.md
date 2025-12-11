@@ -99,7 +99,18 @@ This fail-fast behavior helps catch story structure issues during development.
 
 ## Documentation
 
-For full documentation and examples, visit [GitHub](https://github.com/jcpsimmons/storyloom).
+- **[API Reference](https://jcpsimmons.github.io/storyloom/docs/)** - Full API documentation (auto-generated)
+- **[GitHub Repository](https://github.com/jcpsimmons/storyloom)** - Source code and issues
+
+### Building Documentation Locally
+
+To generate the API documentation locally:
+
+```bash
+npm run docs
+```
+
+This creates a `docs/` folder with the full API reference. The docs are generated from TypeScript types and JSDoc comments, so they stay in sync with your code.
 
 ## License
 

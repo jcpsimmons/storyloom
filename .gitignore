@@ -6,3 +6,4 @@ coverage/
 .vite
 .env
 .env.local
+docs/
