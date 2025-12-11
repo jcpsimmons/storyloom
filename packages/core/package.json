@@ -1,21 +1,34 @@
 {
-  "name": "@storyloom/core",
+  "name": "@woven/core",
   "version": "0.1.0",
-  "description": "Core engine for Storyloom interactive storytelling framework",
+  "description": "Core engine for Woven interactive storytelling framework",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "storytelling",
     "interactive-fiction",
     "narrative",
     "game-engine",
     "branching-narrative",
-    "typescript"
+    "typescript",
+    "woven"
   ],
   "repository": {
     "type": "git",

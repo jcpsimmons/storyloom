@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRuntime, Story, StepResult } from '@storyloom/core';
-import { Button, Card, Navbar, NavbarGroup, NavbarHeading } from '@blueprintjs/core';
+import { Button, Card } from '@blueprintjs/core';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -538,8 +538,16 @@ type GameState = {
   disguise: boolean;
 };
 
+type GameEffect = {
+  health?: number;
+  stealth?: number;
+  hasKey?: boolean;
+  hasWeapon?: boolean;
+  disguise?: boolean;
+};
+
 function App() {
-  const [runtime] = useState(() => createRuntime<any, GameState>(exampleStory));
+  const [runtime] = useState(() => createRuntime<GameEffect, GameState>(exampleStory));
   const [gameState, setGameState] = useState<GameState>({
     health: 10,
     stealth: 0,
@@ -548,11 +556,11 @@ function App() {
     disguise: false,
   });
 
-  const [step, setStep] = useState<StepResult<any>>(() => {
+  const [step, setStep] = useState<StepResult<GameEffect>>(() => {
     return runtime.current(gameState);
   });
 
-  function applyEffects(effects: any[]) {
+  function applyEffects(effects: GameEffect[]) {
     setGameState((prev) => {
       const next = { ...prev };
       for (const eff of effects) {

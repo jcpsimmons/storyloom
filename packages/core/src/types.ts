@@ -1,7 +1,7 @@
 // User defines this per game
 export type EffectPayload = {
   // arbitrary fields...
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 // Internal ids
